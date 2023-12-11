@@ -38,8 +38,8 @@ class Header extends Component {
             </li>
 
             <li>
-              <a className="smoothscroll" href="#resume">
-                Resume
+              <a className="smoothscroll" href="#inputform">
+                Input
               </a>
             </li>
 
