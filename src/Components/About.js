@@ -6,8 +6,12 @@ class About extends Component {
     if (!this.props.data) return null;
 
     const name = this.props.data.name;
-    const profilepic = "images/" + this.props.data.image;
-    const bio = this.props.data.bio;
+    const profilePics = Array.isArray(this.props.data.image)
+      ? this.props.data.image
+      : [];
+    const bios = Array.isArray(this.props.data.bio)
+      ? this.props.data.bio
+      : [];
     const street = this.props.data.address.street;
     const city = this.props.data.address.city;
     const state = this.props.data.address.state;
@@ -19,7 +23,7 @@ class About extends Component {
     return (
       <section id="about">
         <Fade duration={1000}>
-          <div className="row">
+          {/* <div className="row">
             <div className="three columns">
               <img
                 className="profile-pic"
@@ -29,9 +33,37 @@ class About extends Component {
             </div>
             <div className="nine columns main-col">
               <h2>About Me</h2>
-
               <p>{bio}</p>
-              <div className="row">
+
+            </div>
+          </div> */}
+
+          {Array.from({ length: 5 }, (_, index) => (
+            <div className="row" key={index}>
+              <div className="three columns">
+                {/* Display profile pic */}
+                <img
+                  className="profile-pic"
+                  src={profilePics[index] ? `images/${profilePics[index]}` : ''}
+                  alt={`Profile Pic ${index + 1}`}
+                />
+              </div>
+              <div className="nine columns main-col">
+                <h2>{index == 0 ? 'Leader' : 'Member'}</h2>
+                {/* Display bio */}
+                <p>{bios[index]}</p>
+              </div>
+            </div>
+          ))}
+        </Fade>
+      </section>
+    );
+  }
+}
+
+export default About;
+
+{/* <div className="row">
                 <div className="columns contact-details">
                   <h2>Contact Details</h2>
                   <p className="address">
@@ -55,13 +87,4 @@ class About extends Component {
                     </a>
                   </p>
                 </div>
-              </div>
-            </div>
-          </div>
-        </Fade>
-      </section>
-    );
-  }
-}
-
-export default About;
+              </div> */}
