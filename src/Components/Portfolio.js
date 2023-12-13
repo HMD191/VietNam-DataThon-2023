@@ -7,33 +7,26 @@ class Portfolio extends Component {
   render() {
     if (!this.props.data) return null;
 
-    const projects = this.props.data.projects.map(function (projects) {
-      let projectImage = "images/portfolio/" + projects.image;
+    const projects = this.props.data.projects.map(function (project) {
+      let projectImage = "images/portfolio/" + project.image;
 
       return (
-        <div key={id++} className="columns portfolio-item">
-          <div className="item-wrap">
-            <Zmage alt={projects.title} src={projectImage} />
-            <div style={{ textAlign: "center" }}>{projects.title}</div>
+        
+          <div>
+            <img alt={project.title} src={projectImage} />
           </div>
-        </div>
+        
       );
     });
 
     return (
       <section id="portfolio">
         <Fade left duration={1000} distance="40px">
-          <div className="row">
-            <div className="twelve columns collapsed">
-              <h1>Check Out Some of My Works.</h1>
-
-              <div
-                id="portfolio-wrapper"
-                className="bgrid-quarters s-bgrid-thirds cf"
-              >
-                {projects}
-              </div>
-            </div>
+          <div className='relative flex items-center'>
+            <h1>Result</h1>
+            {this.props.data.projects.map((item) => (
+              <img src={"images/portfolio/" + item.image} alt={item.title} />
+            ))}
           </div>
         </Fade>
       </section>
@@ -42,3 +35,33 @@ class Portfolio extends Component {
 }
 
 export default Portfolio;
+
+// Function to chunk an array into groups
+function chunkArray(arr, size) {
+  const chunkedArr = [];
+  let index = 0;
+  while (index < arr.length) {
+    chunkedArr.push(arr.slice(index, size + index));
+    index += size;
+  }
+  return chunkedArr;
+}
+
+    // return (
+    //   <section id="portfolio">
+    //     <Fade left duration={1000} distance="40px">
+    //       <div className="row">
+    //         <div className="twelve columns collapsed">
+    //           <h1>Result</h1>
+
+    //           <div
+    //             id="portfolio-wrapper"
+    //             className="bgrid-quarters s-bgrid-thirds cf"
+    //           >
+    //             {projects}
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </Fade>
+    //   </section>
+    // );

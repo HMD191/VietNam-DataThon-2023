@@ -425,6 +425,22 @@ ul#nav li.current a { color: #fe6928; }
    color: #95A3A3;
 }
 
+.portfolio-item {
+   display: inline-block;
+   width: 33.33%; /* Each item takes 25% of the container width */
+   box-sizing: border-box; /* Ensures padding doesn't affect width */
+   padding: 5px; /* Adjust as needed */
+ }
+ 
+ .flex-row {
+   display: flex;
+   width: auto;
+ }
+ 
+ .scrollable-row {
+   white-space: nowrap;
+ }
+
 /* Portfolio Content */
 #portfolio-wrapper .columns { margin-bottom: 36px; }
 .portfolio-item .item-wrap {
@@ -439,7 +455,7 @@ ul#nav li.current a { color: #fe6928; }
 	transition: all 0.3s ease-in-out;
 }
 .portfolio-item .item-wrap a {
-   display: block;
+   display: inline-block;
    cursor: pointer;
 }
 
@@ -463,7 +479,7 @@ ul#nav li.current a { color: #fe6928; }
    background: url(../images/overlay-bg.png) repeat;
 }
 .portfolio-item .item-wrap .link-icon {
-   display: block;
+   display: inline-block;
    color: #fff;
    height: 30px;
    width: 30px;
@@ -758,7 +774,6 @@ call-to-action .button {
     margin: 0 6px;
     display: inline-block;
     zoom: 1;
-    *display: inline;
 }
 .flex-control-paging li a {
     width: 12px;
