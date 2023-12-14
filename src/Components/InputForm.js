@@ -113,6 +113,7 @@ import TextField from '@material-ui/core/TextField';
 import SendIcon from '@material-ui/icons/Send';
 // import Zmage from "react-zmage";
 import Fade from "react-reveal";
+import Portfolio from './Portfolio';
 
 class InputForm extends Component {
   constructor(props) {
@@ -123,77 +124,58 @@ class InputForm extends Component {
     };
   }
 
-  componentDidMount() {
+  connectToBE = () =>  {
+    const { newMessage, messages } = this.state;
     // Fetch previous messages from the backend when component mounts
     // Fetch request to get previous messages from the backend
-    // Example:
-    fetch('/api/messages')
+    // Example
+
+      // Now send the new message to the backend
+    fetch('/api/sendMessage', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message: newMessage }),
+    })
       .then(response => response.json())
       .then(data => {
-        this.setState({ messages: data });
+        // data={this.state.resumeData.main}
+        <Portfolio responseFromBE={data} />
+        // Handle the response if needed
+        console.log('Message sent:', data);
       })
       .catch(error => {
-        console.error('Error fetching messages:', error);
+        console.error('Error sending message:', error);
+        // Revert the UI state or show an error message in case of an error
+        // For simplicity, this example does not handle the revert case
       });
   }
 
-  handleInputChange = (e) => e.keyCode === 13 ? this.handleSubmit : this.setState({ newMessage: e.target.value });
-  
   messageValid = (txt) => txt && txt.replace(/\s/g , '').length;
   submitMessage = () => {
+    const { newMessage, messages } = this.state;
+    
     if(this.messageValid(this.state.newMessage)) {
+      this.connectToBE();
+      console.log(newMessage);
+      // Optimistically update the UI with the new message before sending it to the backend
       document.getElementById('chattextbox').value = '';
+      const updatedMessages = [...messages, newMessage];
+      // newMessage = '';
+      this.setState({
+        messages: updatedMessages,
+        newMessage: '', // Clear the input field after sending the message
+      });
     }
   }
 
-  handleSubmit = (e) => {
-    this.submitMessage();
-    // if(e.)
-    // e.preventDefault();
-    // const { newMessage, messages } = this.state;
-  
-    // // Optimistically update the UI with the new message before sending it to the backend
-    // const updatedMessages = [...messages, { text: newMessage, id: Date.now() }];
-  
-    // this.setState({
-    //   messages: updatedMessages,
-    //   newMessage: '', // Clear the input field after sending the message
-    // });
-  
-    // Now send the new message to the backend
-    // fetch('/api/sendMessage', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({ message: newMessage }),
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //   // Received a response (data) from the backend
-    //   // If needed, update the UI again based on the backend response
-    //   // For example, if the backend returns an ID for the new message, update the UI with that ID
-    //   const messageId = data.id; // Assuming the backend sends an ID for the new message
-  
-    //   // Update the UI again with the received message ID if necessary
-    //   const updatedMessagesWithId = updatedMessages.map(message => {
-    //     if (message.text === newMessage) {
-    //       return { ...message, id: messageId };
-    //     }
-    //     return message;
-    //   });
-  
-    //   this.setState({ messages: updatedMessagesWithId });
-    // })
-    // .catch(error => {
-    //   console.error('Error sending message:', error);
-    //   // If there's an error from the backend, you might revert the UI state or show an error message
-    //   // For simplicity, this example does not handle the revert case
-    // });
+  userTyping = (e) => {
+    const { keyCode, target } = e;
+    const newMessage = target.value;
+
+    (e.keyCode === 13) ? this.submitMessage() : this.setState({newMessage});
   };
-
-  userTyping = (e) => (e.keyCode === 13) ? this.submitMessage() : this.setState({ newMessage: e.target.value });
-
   render() {
     const { messages, newMessage } = this.state;
     const {classes} = this.props;
@@ -223,23 +205,12 @@ class InputForm extends Component {
               </input>
               <button onClick={this.submitMessage} style={buttonStyle}>Send</button>
             </div>
-            {/* <form onSubmit={this.handleSubmit} style={inputFormStyle} id='chattextbox'>
-              <input
-                type="text"
-                value={newMessage}
-                onChange={this.handleInputChange}
-                placeholder="Enter your message..."
-                style={inputStyle}
-              />
-              <button type="submit" style={buttonStyle}>Send</button>
-            </form> */}
           </div>
         {/* </Fade> */}
       </section>
     );
   }
 }
-
 // Styling
 const chatStyle = {
   backgroundColor: '#fff',
