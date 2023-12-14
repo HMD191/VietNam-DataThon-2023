@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "./",
   "dependencies": {
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -15,6 +17,7 @@
     "react-ga": "^3.3.0",
     "react-reveal": "^1.2.2",
     "react-scripts": "4.0.3",
+    "react-scroll": "^1.9.0",
     "react-zmage": "^0.8.5-beta.36",
     "web-vitals": "^1.0.1"
   },

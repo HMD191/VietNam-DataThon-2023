@@ -87,6 +87,14 @@ pre {
    word-wrap: break-word;
 }
 
+div::-webkit-scrollbar {
+   height: 5px;
+ }
+ 
+ div::-webkit-scrollbar-thumb {
+   background-color: #acacac; /* Color of the scrollbar thumb */
+ }
+
 blockquote, q { quotes: &#8220 &#8220; }
 
 blockquote:before, blockquote:after,
