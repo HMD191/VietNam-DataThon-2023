@@ -40,13 +40,16 @@ class App extends Component {
     this.getResumeData();
   }
 
+  // this.setState({ responseFromBE: data.responseArray });
+  // {"image": "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg" , "title": "imageee"}
+
   render() {
     return (
       <div className="App">
         <Header data={this.state.resumeData.main} />
         <About data={this.state.resumeData.main} />
         <InputForm data={this.state.resumeData.resume} />
-        <Portfolio data={this.state.resumeData.portfolio} />
+        <Portfolio responseFromBE={this.state.responseFromBE} />
         <Contact data={this.state.resumeData.main} />
         <Footer data={this.state.resumeData.main} />
       </div>

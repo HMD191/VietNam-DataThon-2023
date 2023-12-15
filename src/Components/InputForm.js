@@ -126,30 +126,37 @@ class InputForm extends Component {
 
   connectToBE = () =>  {
     const { newMessage, messages } = this.state;
+    // state = {
+    //   responseFromBE: [], // Your state here
+    // };
     // Fetch previous messages from the backend when component mounts
     // Fetch request to get previous messages from the backend
     // Example
 
       // Now send the new message to the backend
-    fetch('/api/sendMessage', {
+    fetch('http://localhost:8082/api/sendMessage', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ message: newMessage }),
     })
-      .then(response => response.json())
-      .then(data => {
-        // data={this.state.resumeData.main}
-        <Portfolio responseFromBE={data} />
-        // Handle the response if needed
-        console.log('Message sent:', data);
-      })
-      .catch(error => {
-        console.error('Error sending message:', error);
-        // Revert the UI state or show an error message in case of an error
-        // For simplicity, this example does not handle the revert case
-      });
+    .then(response => response.json())
+    .then(data => {
+      // data={this.state.resumeData.main}
+      // <Portfolio responseFromBE={data.responseArray} />
+      // Handle the response if needed
+      this.setState({ responseFromBE: [] });
+      this.setState({ responseFromBE: data.responseArray });
+      // <Portfolio responseFromBE={this.state.responseFromBE} />
+      // console.log(this.props.responseFromBE);
+      console.log('Message sent:', this.state.responseFromBE);
+    })
+    .catch(error => {
+      console.error('Error sending message:', error);
+      // Revert the UI state or show an error message in case of an error
+      // For simplicity, this example does not handle the revert case
+    });
   }
 
   messageValid = (txt) => txt && txt.replace(/\s/g , '').length;
@@ -158,7 +165,7 @@ class InputForm extends Component {
     
     if(this.messageValid(this.state.newMessage)) {
       this.connectToBE();
-      console.log(newMessage);
+      // console.log(newMessage);
       // Optimistically update the UI with the new message before sending it to the backend
       document.getElementById('chattextbox').value = '';
       const updatedMessages = [...messages, newMessage];

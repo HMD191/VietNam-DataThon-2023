@@ -4,15 +4,34 @@ import Fade from "react-reveal";
 
 let id = 0;
 class Portfolio extends Component {
+  componentDidUpdate(prevProps) {
+    // Check if responseFromBE prop has changed
+    console.log("componentDidUpdate");
+    console.log(this.props.responseFromBE);
+    console.log(prevProps.responseFromBE);
+    if (this.props.responseFromBE !== null) {
+      // Perform any logic here that should execute when responseFromBE changes
+      // For example, console log the updated responseFromBE
+      console.log('responseFromBE has changed:', this.props.responseFromBE);
+      // You can put any logic here that should execute when responseFromBE changes
+      // If necessary, trigger any actions or state updates here
+      // For instance, force a re-render by updating state
+      // this.setState({}); // Update an empty state to trigger re-render (if required)
+    }
+  }
+
   render() {
-    // if(!this.props.responseFromBE)
-    //   return null;
+    console.log("oke1");
+    console.log(this.props.responseFromBE);
+    if(!this.props.responseFromBE)
+      return null;
+    console.log("oke");
     if (!this.props.data) return null;
 
-    // const hats = this.props.responseFromBE.hats.map(function (project) {
-    const projects = this.props.data.projects.map(function (project) {
-      let projectImage = "images/portfolio/" + project.image;
-      // let projectImage = project.image;
+    const hats = this.props.responseFromBE.hats.map(function (project) {
+    // const projects = this.props.data.projects.map(function (project) {
+      // let projectImage = "images/portfolio/" + project.image;
+      let projectImage = project.image;
 
       return (
         <div style={{ display: 'inline-block', marginRight: '10px' , marginLeft: '10px'}}>
@@ -63,10 +82,10 @@ class Portfolio extends Component {
           <div>
             <h1>hats</h1>
             <div className="smoothscroll" style={{ whiteSpace: 'nowrap', overflowX: 'auto', WebkitOverflowScrolling: 'touch'}}>
-              {projects}
+              {hats}
             </div>
 
-            <h1>shirts</h1>
+            {/* <h1>shirts</h1>
             <div className="smoothscroll" style={{ whiteSpace: 'nowrap', overflowX: 'auto' }}>
               {projects}
             </div>
@@ -79,7 +98,7 @@ class Portfolio extends Component {
             <h1>shoes</h1>
             <div className="smoothscroll" style={{ whiteSpace: 'nowrap', overflowX: 'auto' }}>
               {projects}
-            </div>
+            </div> */}
           </div>
         </Fade>
       </section>
@@ -89,112 +108,3 @@ class Portfolio extends Component {
 
 export default Portfolio;
 
-
-// import React, { Component } from "react";
-// import Zmage from "react-zmage";
-// import Fade from "react-reveal";
-
-// let id = 0;
-// class Portfolio extends Component {
-//   render() {
-//     const { messages } = this.props;
-//     if (!this.props.data) return null;
-
-//     const projects = this.props.data.projects.map(function (project) {
-//       let projectImage = "images/portfolio/" + project.image;
-
-//       return (
-//         <div key={id++} className="columns portfolio-item">
-//           <div className="item-wrap">
-//             <Zmage alt={project.title} src={projectImage} />
-//             <div style={{ textAlign: "center" }}>{project.title}</div>
-//           </div>
-//         </div>
-//       );
-//     });
-
-//     return (
-//       <section id="portfolio">
-//         <Fade left duration={1000} distance="40px">
-//           <div className="row">
-//             <div className="twelve columns collapsed">
-//               <h1>Result</h1>
-
-//               <div
-//                 // id="portfolio-w rapper"
-//                 // className="bgrid-quarters s-bgrid-thirds cf"
-//               >
-//                 {projects}
-//               </div>
-//             </div>
-//           </div>
-//           {/* <div className='relative flex items-center'>
-//             <h1>Result</h1>
-//             {this.props.data.projects.map((item) => (
-//               <img src={"images/portfolio/" + item.image} alt={item.title} />
-//             ))}
-//           </div> */}
-//         </Fade>
-//       </section>
-//     );
-//   }
-// }
-
-// export default Portfolio;
-
-// // Function to chunk an array into groups
-// function chunkArray(arr, size) {
-//   const chunkedArr = [];
-//   let index = 0;
-//   while (index < arr.length) {
-//     chunkedArr.push(arr.slice(index, size + index));
-//     index += size;
-//   }
-//   return chunkedArr;
-// }
-
-// import React, { Component } from "react";
-// import Zmage from "react-zmage";
-// import Fade from "react-reveal";
-
-// let id = 0;
-// class Portfolio extends Component {
-//   render() {
-//     if (!this.props.data) return null;
-
-//     const projects = this.props.data.projects.map(function (projects) {
-//       let projectImage = "images/portfolio/" + projects.image;
-
-      // return (
-      //   <div key={id++} className="columns portfolio-item">
-      //     <div className="item-wrap">
-      //       <Zmage alt={projects.title} src={projectImage} />
-      //       <div style={{ textAlign: "center" }}>{projects.title}</div>
-      //     </div>
-      //   </div>
-      // );
-//     });
-
-
-//     return (
-//       <section id="portfolio">
-//         <Fade left duration={1000} distance="40px">
-          // <div className="row">
-          //   <div className="twelve columns collapsed">
-          //     <h1>Check Out Some of My Works.</h1>
-
-          //     <div
-          //       id="portfolio-wrapper"
-          //       className="bgrid-quarters s-bgrid-thirds cf"
-          //     >
-          //       {projects}
-          //     </div>
-          //   </div>
-//           </div>
-//         </Fade>
-//       </section>
-//     );
-//   }
-// }
-
-// export default Portfolio;
