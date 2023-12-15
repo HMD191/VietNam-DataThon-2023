@@ -4,31 +4,50 @@ import Fade from "react-reveal";
 
 let id = 0;
 class Portfolio extends Component {
-  componentDidUpdate(prevProps) {
-    // Check if responseFromBE prop has changed
-    console.log("componentDidUpdate");
-    console.log(this.props.responseFromBE);
-    console.log(prevProps.responseFromBE);
-    if (this.props.responseFromBE !== null) {
-      // Perform any logic here that should execute when responseFromBE changes
-      // For example, console log the updated responseFromBE
-      console.log('responseFromBE has changed:', this.props.responseFromBE);
-      // You can put any logic here that should execute when responseFromBE changes
-      // If necessary, trigger any actions or state updates here
-      // For instance, force a re-render by updating state
-      // this.setState({}); // Update an empty state to trigger re-render (if required)
-    }
-  }
+
+  // constructor(props) {
+  //   super(props);
+  //   console.log("constructor: ", this.props.responseFromBE);
+  //   this.state = {
+  //     responseFromBEState: this.props.responseFromBE
+  //   };
+  // }
+
+  // componentDidMount() {
+  //   this.interval = setInterval(() => {
+  //     // Call a function to fetch updated data every second
+  //     // For example:
+  //     // this.fetchUpdatedData();
+  //     console.log('Re-rendering every 1 second');
+  //     console.log("componentDidMount: ", this.props.responseFromBE);
+  //     console.log("componentDidMount: ", this.state.responseFromBEState);
+
+  //     if (this.props.responseFromBE !== this.state.responseFromBEState) {
+  //       this.setState({
+  //         responseFromBEState: this.props.responseFromBE
+  //       });
+  //       this.forceUpdate();
+  //       console.log("responseFromBE has changed:", this.props.responseFromBE);
+  //     }
+  //      // Force re-render
+  //   }, 2000);
+  // }
+
+  // componentWillUnmount() {
+  //   clearInterval(this.interval); // Clear the interval on component unmount
+  // }
+
 
   render() {
     console.log("oke1");
     console.log(this.props.responseFromBE);
     if(!this.props.responseFromBE)
       return null;
-    console.log("oke");
-    if (!this.props.data) return null;
 
-    const hats = this.props.responseFromBE.hats.map(function (project) {
+    console.log("oke");
+    // if (!this.props.data) return null;
+
+    const hats = this.props.responseFromBE.map(function (project) {
     // const projects = this.props.data.projects.map(function (project) {
       // let projectImage = "images/portfolio/" + project.image;
       let projectImage = project.image;

@@ -146,11 +146,16 @@ class InputForm extends Component {
       // data={this.state.resumeData.main}
       // <Portfolio responseFromBE={data.responseArray} />
       // Handle the response if needed
-      this.setState({ responseFromBE: [] });
-      this.setState({ responseFromBE: data.responseArray });
-      // <Portfolio responseFromBE={this.state.responseFromBE} />
-      // console.log(this.props.responseFromBE);
+      this.setState(prevState => ({
+        ...prevState,
+        responseFromBE: data.responseArray
+      }));
+      this.props.updateResponseFromBE(data.responseArray);
+
+      console.log(this.state.responseFromBE);
       console.log('Message sent:', this.state.responseFromBE);
+
+      // <Portfolio responseFromBE={this.state.responseFromBE} />
     })
     .catch(error => {
       console.error('Error sending message:', error);
@@ -184,6 +189,7 @@ class InputForm extends Component {
     (e.keyCode === 13) ? this.submitMessage() : this.setState({newMessage});
   };
   render() {
+    console.log("ecec");
     const { messages, newMessage } = this.state;
     const {classes} = this.props;
 
