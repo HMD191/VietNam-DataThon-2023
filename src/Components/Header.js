@@ -9,14 +9,24 @@ class Header extends Component {
     const project = this.props.data.project;
     const github = this.props.data.github;
     const name = this.props.data.name;
+    const imageBackground = "images/" + this.props.data.imageBackground;
     // const name = "FiveOnFire";
     const description = this.props.data.description;
 
     return (
-      <header id="home">
-        <ParticlesBg type="circle" bg={true} />
+      <header 
+        id="home" 
+        style={{ 
+          backgroundImage: `url(${imageBackground})`,
+          backgroundSize: 'cover', // Adjust the scaling as needed
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          }}
+      >
+        {/* <img src={imageBackground ? `images/${imageBackground}` : ''} alt="logo" className="logo" /> */}
+        {/* <ParticlesBg type="circle" bg={true} /> */}
 
-        <nav id="nav-wrap">
+        <nav id="nav-wrap" >
           <a className="mobile-btn" href="#nav-wrap" title="Show navigation">
             Show navigation
           </a>
@@ -28,12 +38,6 @@ class Header extends Component {
             <li className="current">
               <a className="smoothscroll" href="#home">
                 Home
-              </a>
-            </li>
-
-            <li>
-              <a className="smoothscroll" href="#about">
-                About
               </a>
             </li>
 
@@ -50,8 +54,8 @@ class Header extends Component {
             </li>
 
             <li>
-              <a className="smoothscroll" href="#contact">
-                Contact
+              <a className="smoothscroll" href="#about">
+                About
               </a>
             </li>
           </ul>
@@ -66,7 +70,7 @@ class Header extends Component {
               <h3>{description}.</h3>
             </Fade>
             <hr />
-            <Fade bottom duration={2000}>
+            {/* <Fade bottom duration={2000}>
               <ul className="social">
                 <a href={project} className="button btn project-btn">
                   <i className="fa fa-book"></i>Project
@@ -75,12 +79,12 @@ class Header extends Component {
                   <i className="fa fa-github"></i>Github
                 </a>
               </ul>
-            </Fade>
+            </Fade> */}
           </div>
         </div>
 
         <p className="scrolldown">
-          <a className="smoothscroll" href="#about">
+          <a className="smoothscroll" href="#inputform">
             <i className="icon-down-circle"></i>
           </a>
         </p>

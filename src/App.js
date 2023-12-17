@@ -52,13 +52,13 @@ class App extends Component {
     return (
       <div className="App">
         <Header data={this.state.resumeData.main} />
-        <About data={this.state.resumeData.main} />
         <InputForm
           data={this.state.resumeData.resume} 
           updateResponseFromBE={this.updateResponseFromBE}
         />
         <Portfolio responseFromBE={this.state.responseFromBE} />
-        <Contact data={this.state.resumeData.main} />
+        <About data={this.state.resumeData.main} />
+        {/* <Contact data={this.state.resumeData.main} /> */}
         <Footer data={this.state.resumeData.main} />
       </div>
     );

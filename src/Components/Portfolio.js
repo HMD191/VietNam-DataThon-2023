@@ -47,77 +47,112 @@ class Portfolio extends Component {
     console.log("oke");
     // if (!this.props.data) return null;
 
-    const hats = this.props.responseFromBE.map(function (project) {
-    // const projects = this.props.data.projects.map(function (project) {
-      // let projectImage = "images/portfolio/" + project.image;
-      let projectImage = project.image;
+    let accessories = null;
+    if(this.props.responseFromBE.accessories)
+      accessories = this.props.responseFromBE.accessories.map(function (project) {
+        let projectImage = project.image;
+        let link = project.link
 
-      return (
-        <div style={{ display: 'inline-block', marginRight: '10px' , marginLeft: '10px'}}>
-          <Zmage alt={project.title} src={projectImage} style={{ width: '100%', maxWidth: '200px' }} />
-          <div style={{ textAlign: "center" }}>{project.title}</div>
-        </div>
-      );
-    });
+        return (
+          <div style={{ display: 'inline-block', marginRight: '10px' , marginLeft: '10px'}}>
+            <a href={link} target="_blank" rel="noopener noreferrer" style={{ display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', width: '200px' }}>
+              <img alt={project.title} src={projectImage} style={{ width: '100%'}} />
+              <div style={{ textAlign: 'center' }}>{project.title}</div>
+            </a>
+          </div>
+        );
+      });
 
-    // const shirts = this.props.responseFromBE.shirts.map(function (project) {
-    //   let projectImage = "images/portfolio/" + project.image;
+    let shirts = null;
+    if(this.props.responseFromBE.shirts)
+      shirts = this.props.responseFromBE.shirts.map(function (project) {
+        let projectImage = project.image;
+        let link = project.link
 
-    //   return (
-    //     <div style={{ display: 'inline-block', marginRight: '10px' , marginLeft: '10px'}}>
-    //       <Zmage alt={project.title} src={projectImage} style={{ width: '100%', maxWidth: '200px' }} />
-    //       <div style={{ textAlign: "center" }}>{project.title}</div>
-    //     </div>
-    //   );
-    // });
+        return (
+          <div style={{ display: 'inline-block', marginRight: '10px' , marginLeft: '10px'}}>
+              <a href={link} target="_blank" rel="noopener noreferrer" style={{ display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', width: '200px' }}>
+                <img alt={project.title} src={projectImage} style={{ width: '100%', maxWidth: '200px' }} />
+                <div style={{ textAlign: 'center' }}>{project.title}</div>
+              </a>
+          </div>
+        );
+      });
 
-    // const pants = this.props.responseFromBE.pants.map(function (project) {
-    //   let projectImage = "images/portfolio/" + project.image;
-    //   // let projectImage = project.image;
+    let pants = null;
+    if(this.props.responseFromBE.pants)
+      pants = this.props.responseFromBE.pants.map(function (project) {
+        let projectImage = project.image;
+        let link = project.link
 
-    //   return (
-    //     <div style={{ display: 'inline-block', marginRight: '10px' , marginLeft: '10px'}}>
-    //       <Zmage alt={project.title} src={projectImage} style={{ width: '100%', maxWidth: '200px' }} />
-    //       <div style={{ textAlign: "center" }}>{project.title}</div>
-    //     </div>
-    //   );
-    // });
+        return (
+          <div style={{ display: 'inline-block', marginRight: '10px' , marginLeft: '10px'}}>
+              <a href={link} target="_blank" rel="noopener noreferrer" style={{ display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', width: '200px'}}>
+                <img alt={project.title} src={projectImage} style={{ width: '100%', maxWidth: '200px' }} />
+                <div style={{ textAlign: 'center' }}>{project.title}</div>
+              </a>
+          </div>
+        );
+      });
 
-    // const shoes = this.props.responseFromBE.shoes.map(function (project) {
-    //   let projectImage = "images/portfolio/" + project.image;
-    //   // let projectImage = project.image;
+    let shoes = null;
+    if(this.props.responseFromBE.shoes)
+      shoes = this.props.responseFromBE.shoes.map(function (project) {
+        let projectImage = project.image;
+        let link = project.link
 
-    //   return (
-    //     <div style={{ display: 'inline-block', marginRight: '10px' , marginLeft: '10px'}}>
-    //       <Zmage alt={project.title} src={projectImage} style={{ width: '100%', maxWidth: '200px' }} />
-    //       <div style={{ textAlign: "center" }}>{project.title}</div>
-    //     </div>
-    //   );
-    // });
+        return (
+          <div style={{ display: 'inline-block', marginRight: '10px' , marginLeft: '10px'}}>
+              <a href={link} target="_blank" rel="noopener noreferrer" style={{ display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', width: '200px'}}>
+                <img alt={project.title} src={projectImage} style={{ width: '100%', maxWidth: '200px' }} />
+                <div style={{ textAlign: 'center' }}>{project.title}</div>
+              </a>
+          </div>
+        );
+      });
 
     return (
       <section id="portfolio">
         <Fade left duration={1000} distance="40px">
           <div>
-            <h1>hats</h1>
-            <div className="smoothscroll" style={{ whiteSpace: 'nowrap', overflowX: 'auto', WebkitOverflowScrolling: 'touch'}}>
-              {hats}
-            </div>
 
-            {/* <h1>shirts</h1>
-            <div className="smoothscroll" style={{ whiteSpace: 'nowrap', overflowX: 'auto' }}>
-              {projects}
-            </div>
+            {this.props.responseFromBE.shirts && (
+              <div>
+                <h1>shirts</h1>
+                <div className="smoothscroll" style={{ whiteSpace: 'nowrap', overflowX: 'auto' }}>
+                  {shirts}
+                </div>
+              </div>
+            )}
 
-            <h1>pants</h1>
-            <div className="smoothscroll" style={{ whiteSpace: 'nowrap', overflowX: 'auto' }}>
-              {projects}
-            </div>
 
-            <h1>shoes</h1>
-            <div className="smoothscroll" style={{ whiteSpace: 'nowrap', overflowX: 'auto' }}>
-              {projects}
-            </div> */}
+            {this.props.responseFromBE.pants && (
+              <div>
+                <h1>Pants</h1>
+                <div className="smoothscroll" style={{ whiteSpace: 'nowrap', overflowX: 'auto' }}>
+                  {pants}
+                </div>
+              </div>
+            )}
+
+            {this.props.responseFromBE.shoes && (
+              <div>
+                <h1>Shoes</h1>
+                <div className="smoothscroll" style={{ whiteSpace: 'nowrap', overflowX: 'auto' }}>
+                  {shoes}
+                </div>
+              </div>
+            )}
+
+            {this.props.responseFromBE.accessories && (
+              <div>
+                <h1>Others</h1>
+                <div className="smoothscroll" style={{ whiteSpace: 'nowrap', overflowX: 'auto' }}>
+                  {accessories}
+                </div>
+              </div>
+            )}
+
           </div>
         </Fade>
       </section>

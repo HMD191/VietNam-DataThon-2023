@@ -49,7 +49,7 @@ class About extends Component {
                 />
               </div>
               <div className="nine columns main-col">
-                <h2>{index === 0 ? 'Leader' : 'Member'}</h2>
+                <h2>Member</h2>
                 {/* Display bio */}
                 <p>{bios[index]}</p>
               </div>
