@@ -1,7 +1,11 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+/front-end/node_modules
+/model/__pycache__
+
+# file is too big
+/model/fclip_trainned.pkl
 
 # testing
 /coverage
