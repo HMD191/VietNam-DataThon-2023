@@ -7,6 +7,9 @@
 # file is too big
 /model/fclip_trainned.pkl
 
+/model/newest/__pycache__
+/model/newest/fclip_model.pkl
+
 # testing
 /coverage
 
